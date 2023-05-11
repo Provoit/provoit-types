@@ -11,7 +11,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3
+      - uses: actions/checkout@v3
 
       - name: Lint
         run: cargo clippy
@@ -23,7 +23,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@3
+      - uses: actions/checkout@v3
 
       - name: Build
         run: cargo build --verbose
@@ -35,7 +35,7 @@ jobs:
     name: Build & test with diesel feature
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3
+      - uses: actions/checkout@v3
 
       - name: Build
         run: cargo build --verbose --features diesel

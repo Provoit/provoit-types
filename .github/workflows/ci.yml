@@ -37,6 +37,9 @@ jobs:
       - name: Test
         run: cargo test --verbose
 
+      - name: Docs
+        run: cargo doc --verbose
+
   build-diesel-feature:
     name: Build with diesel feature
     runs-on: ubuntu-latest
@@ -51,3 +54,6 @@ jobs:
 
       - name: Test
         run: cargo test --verbose --features diesel
+
+      - name: Docs
+        run: cargo doc --verbose --features diesel

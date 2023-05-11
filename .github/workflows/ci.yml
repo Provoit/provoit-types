@@ -10,17 +10,15 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  lint:
-    name: Lint
+  format:
+    name: Code format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Lint
-        run: cargo clippy
+      - name: Format
+        run: cargo fmt --verbose --check
 
   build:
-    name: Build & test on ${{ matrix.os }}
+    name: Build for ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -31,17 +29,23 @@ jobs:
       - name: Build
         run: cargo build --verbose
 
+      - name: Lint
+        run: cargo clippy --verbose
+
       - name: Test
         run: cargo test --verbose
 
   build-diesel-feature:
-    name: Build & test with diesel feature
+    name: Build with diesel feature
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
       - name: Build
         run: cargo build --verbose --features diesel
+
+      - name: Lint
+        run: cargo clippy --verbose --features diesel
 
       - name: Test
         run: cargo test --verbose --features diesel

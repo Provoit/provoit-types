@@ -2,7 +2,7 @@
 
 diesel::table! {
     users (id) {
-        id -> Bigint,
+        id -> Unsigned<Bigint>,
         name -> Text,
     }
 }

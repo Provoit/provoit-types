@@ -11,4 +11,3 @@ pub fn run_migrations<DB: diesel::backend::Backend>(
 
     Ok(())
 }
-

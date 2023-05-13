@@ -68,7 +68,7 @@ jobs:
         run: sudo systemctl start mysql.service
 
       - name: Deps
-        run: apt install -y libmysqlclient-dev
+        run: sudo apt-get install -y libmysqlclient-dev
 
       - name: Setup diesel
         run: cargo install diesel_cli --no-default-features --features mysql

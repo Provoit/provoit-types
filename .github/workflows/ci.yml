@@ -57,3 +57,24 @@ jobs:
 
       - name: Docs
         run: cargo doc --verbose --features diesel
+
+  diesel:
+    name: Diesel schema
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup mysql
+        run: sudo systemctl start mysql.service
+
+      - name: Deps
+        run: apt install -y libmysqlclient-dev
+
+      - name: Setup diesel
+        run: cargo install diesel_cli --no-default-features --features mysql
+
+      - name: Generate schema
+        run: diesel setup --database-url mysql://root:root@127.0.0.1/diesel_demo
+
+        # Checks for changed files
+      - run: test ! "$(git status --porcelain)"

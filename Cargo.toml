@@ -7,8 +7,14 @@ edition = "2021"
 
 [dependencies]
 diesel = { version = "2.0.4", features = ["mysql"], optional = true }
+diesel_migrations = { version = "2.0.0", features = ["mysql"], optional = true }
+serde = { version = "1.0.163", features = ["derive"] }
 
 
 [profile.release]
 lto = true
 strip = true
+
+
+[features]
+diesel = ["dep:diesel", "dep:diesel_migrations"]

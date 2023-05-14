@@ -29,16 +29,16 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build
-        run: cargo build --verbose
+        run: cargo build --verbose --locked
 
       - name: Lint
-        run: cargo clippy --verbose
+        run: cargo clippy --verbose --no-deps
 
       - name: Test
-        run: cargo test --verbose
+        run: cargo test --verbose --locked
 
       - name: Docs
-        run: cargo doc --verbose
+        run: cargo doc --verbose --no-deps --locked
 
   build-diesel-feature:
     name: Build with diesel feature
@@ -47,16 +47,16 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build
-        run: cargo build --verbose --features diesel
+        run: cargo build --verbose --features diesel --locked
 
       - name: Lint
-        run: cargo clippy --verbose --features diesel
+        run: cargo clippy --verbose --features diesel --no-deps
 
       - name: Test
-        run: cargo test --verbose --features diesel
+        run: cargo test --verbose --features diesel --locked
 
       - name: Docs
-        run: cargo doc --verbose --features diesel
+        run: cargo doc --verbose --features diesel --no-deps --locked
 
   diesel:
     name: Diesel schema
@@ -67,11 +67,22 @@ jobs:
       - name: Setup mysql
         run: sudo systemctl start mysql.service
 
-      - name: Deps
-        run: sudo apt-get install -y libmysqlclient-dev
+      # Cache .cargo to avoid installing dioxus-cli
+      - name: Diesel cli cache
+        id: cache-diesel-cli
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-diesel-cli
+        with:
+          path: ~/.cargo
+          key: ${{ runner.os }}-cargo-diesel
 
-      - name: Setup diesel
-        run: cargo install diesel_cli --no-default-features --features mysql
+      # Install diesel cli if cache misses
+      - name: Diesel cli install
+        if: ${{ steps.cache-diesel-cli.outputs.cache-hit != 'true' }}
+        run: |
+          sudo apt-get install -y libmysqlclient-dev
+          cargo install diesel_cli --no-default-features --features mysql
 
       - name: Generate schema
         run: diesel setup --database-url mysql://root:root@127.0.0.1/diesel_demo

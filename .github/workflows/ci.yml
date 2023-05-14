@@ -29,16 +29,16 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build
-        run: cargo build --verbose --locked
+        run: cargo build --verbose
 
       - name: Lint
         run: cargo clippy --verbose --no-deps
 
       - name: Test
-        run: cargo test --verbose --locked
+        run: cargo test --verbose
 
       - name: Docs
-        run: cargo doc --verbose --no-deps --locked
+        run: cargo doc --verbose --no-deps
 
   build-diesel-feature:
     name: Build with diesel feature
@@ -47,16 +47,16 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build
-        run: cargo build --verbose --features diesel --locked
+        run: cargo build --verbose --features diesel
 
       - name: Lint
         run: cargo clippy --verbose --features diesel --no-deps
 
       - name: Test
-        run: cargo test --verbose --features diesel --locked
+        run: cargo test --verbose --features diesel
 
       - name: Docs
-        run: cargo doc --verbose --features diesel --no-deps --locked
+        run: cargo doc --verbose --features diesel --no-deps
 
   diesel:
     name: Diesel schema

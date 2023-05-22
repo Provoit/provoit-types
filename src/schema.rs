@@ -14,7 +14,4 @@ diesel::table! {
     }
 }
 
-diesel::allow_tables_to_appear_in_same_query!(
-    users,
-    vehicle_types,
-);
+diesel::allow_tables_to_appear_in_same_query!(users, vehicle_types,);

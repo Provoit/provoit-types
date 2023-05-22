@@ -14,6 +14,18 @@ There are types for a complete record, a new one or an updating one.
 `diesel` feature enables *derive* attributes on models for querying. It also enables the `schema` module for compile time query validation.  
 Finally, this enables a `migrations` module which embed the migrations for later run.
 
+## Tools
+
+This project needs the rust tooling, including cargo.  
+The diesel CLI is needed, you can install it with the following command.
+
+```sh
+sudo apt install libmysqlclient-dev  # MySQL deps
+cargo install diesel_cli --no-default-features --features mysql
+```
+
+This project also needs a **MySQL** database, the easiest way is using docker.
+
 ## Contributing
 
 1. Run `diesel migration generate create_<table>` to create the migrations
@@ -23,5 +35,13 @@ Finally, this enables a `migrations` module which embed the migrations for later
 5. This *struct* derives from `Debug`, `Clone`, 'Serialize' & `Deserialize`
 6. With *diesel* feature, it derives from `Queryable`. You can also specify the table name if needed
 7. The model file should also contains `struct` for a new model and an updating model
+
+
+You can quickly setup a database and run the migration with the following commands. This is actually required to generate the schema file.
+
+```sh
+docker run -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=provoit -d -p 3306:3306 --rm mysql:latest
+diesel migration run --database-url mysql://root:root@127.0.0.1/provoit
+```
 
 Take example on other models.

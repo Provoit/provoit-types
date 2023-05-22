@@ -24,7 +24,7 @@ sudo apt install libmysqlclient-dev  # MySQL deps
 cargo install diesel_cli --no-default-features --features mysql
 ```
 
-This project also needs a **MySQL** database, the easiest way to have one is with docker.
+This project also needs a **MySQL** database, the easiest way is using docker.
 
 ## Contributing
 

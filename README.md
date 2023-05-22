@@ -17,7 +17,7 @@ Finally, this enables a `migrations` module which embed the migrations for later
 ## Tools
 
 This project needs the rust tooling, including cargo.  
-The diesel cli is needed, you can install it with the following command.
+The diesel CLI is needed, you can install it with the following command.
 
 ```sh
 sudo apt install libmysqlclient-dev  # MySQL deps

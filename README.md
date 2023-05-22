@@ -20,6 +20,7 @@ This project needs the rust tooling, including cargo.
 The diesel cli is needed, you can install it with the following command.
 
 ```sh
+sudo apt install libmysqlclient-dev  # MySQL deps
 cargo install diesel_cli --no-default-features --features mysql
 ```
 

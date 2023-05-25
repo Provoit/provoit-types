@@ -1,7 +1,21 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
+    days (id) {
+        id -> Unsigned<Bigint>,
+        label -> Text,
+    }
+}
+
+diesel::table! {
     frequencies (id) {
+        id -> Unsigned<Bigint>,
+        label -> Text,
+    }
+}
+
+diesel::table! {
+    road_types (id) {
         id -> Unsigned<Bigint>,
         label -> Text,
     }
@@ -21,4 +35,4 @@ diesel::table! {
     }
 }
 
-diesel::allow_tables_to_appear_in_same_query!(frequencies, users, vehicle_types,);
+diesel::allow_tables_to_appear_in_same_query!(days, frequencies, road_types, users, vehicle_types,);

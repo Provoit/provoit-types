@@ -1,6 +1,13 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
+    road_types (id) {
+        id -> Unsigned<Bigint>,
+        label -> Text,
+    }
+}
+
+diesel::table! {
     users (id) {
         id -> Unsigned<Bigint>,
         name -> Text,
@@ -14,4 +21,4 @@ diesel::table! {
     }
 }
 
-diesel::allow_tables_to_appear_in_same_query!(users, vehicle_types,);
+diesel::allow_tables_to_appear_in_same_query!(road_types, users, vehicle_types,);

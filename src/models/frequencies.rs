@@ -7,8 +7,8 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(feature = "diesel", diesel(table_name = frequencies))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Frequency {
-    id: u64,
-    label: String,
+    pub id: u64,
+    pub label: String,
 }
 
 // `frequencies` is an enumeration table, is shouldn't need to be updated or created via model.

@@ -10,7 +10,7 @@ use crate::schema::*;
 #[cfg_attr(feature = "diesel", derive(Queryable, Associations))]
 #[cfg_attr(feature = "diesel", diesel(belongs_to(Day, foreign_key = id)))]
 #[cfg_attr(feature = "diesel", diesel(table_name = timings))]
-#[derive(Debug, Default, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Timing {
     pub id: u64,
     pub date: Option<NaiveDate>,
@@ -31,7 +31,7 @@ pub struct NewTiming {
 #[cfg_attr(feature = "diesel", diesel(table_name = timings))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UpdateTiming {
-    pub date: Option<NaiveDate>,
-    pub time: NaiveTime,
-    pub id_day: Option<u64>,
+    pub date: Option<Option<NaiveDate>>,
+    pub time: Option<NaiveTime>,
+    pub id_day: Option<Option<u64>>,
 }

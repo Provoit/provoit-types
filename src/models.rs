@@ -3,5 +3,5 @@ pub mod days;
 pub mod frequencies;
 pub mod road_types;
 pub mod timings;
-pub mod user;
+pub mod users;
 pub mod vehicle_types;

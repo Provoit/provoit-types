@@ -3,6 +3,7 @@ use diesel::prelude::*;
 
 #[cfg(feature = "diesel")]
 use crate::schema::*;
+use crate::Blob;
 
 use serde::{Deserialize, Serialize};
 
@@ -10,20 +11,37 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(feature = "diesel", diesel(table_name = users))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct User {
-    id: u64,
-    name: String,
+    pub id: u64,
+    pub firstname: String,
+    pub lastname: String,
+    pub mail: String,
+    pub passwd: String,
+    pub profile_pic: Option<Blob>,
+    pub smoker: bool,
+    pub id_favorite_vehicle: Option<u64>,
 }
 
 #[cfg_attr(feature = "diesel", derive(Insertable))]
 #[cfg_attr(feature = "diesel", diesel(table_name = users))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NewUser {
-    name: String,
+    pub firstname: String,
+    pub lastname: String,
+    pub mail: String,
+    pub passwd: String,
+    pub profile_pic: Option<Blob>,
+    pub smoker: bool,
+    pub id_favorite_vehicle: Option<u64>,
 }
 
 #[cfg_attr(feature = "diesel", derive(AsChangeset))]
 #[cfg_attr(feature = "diesel", diesel(table_name = users))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UpdateUser {
-    name: Option<String>,
+    pub firstname: Option<String>,
+    pub lastname: Option<String>,
+    pub mail: Option<String>,
+    pub profile_pic: Option<Option<Blob>>,
+    pub smoker: Option<bool>,
+    pub id_favorite_vehicle: Option<Option<u64>>,
 }

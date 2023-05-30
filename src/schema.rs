@@ -33,7 +33,13 @@ diesel::table! {
 diesel::table! {
     users (id) {
         id -> Unsigned<Bigint>,
-        name -> Text,
+        firstname -> Text,
+        lastname -> Text,
+        mail -> Varchar,
+        passwd -> Text,
+        profile_pic -> Nullable<Blob>,
+        smoker -> Bool,
+        id_favorite_vehicle -> Nullable<Unsigned<Bigint>>,
     }
 }
 

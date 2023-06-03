@@ -1,3 +1,4 @@
+use chrono::naive::NaiveDateTime;
 #[cfg(feature = "diesel")]
 use diesel::prelude::*;
 
@@ -15,7 +16,12 @@ pub struct User {
     pub firstname: String,
     pub lastname: String,
     pub mail: String,
+    #[serde(skip)]
     pub passwd: String,
+    #[serde(skip)]
+    pub token: Option<String>,
+    #[serde(skip)]
+    pub token_gentime: Option<NaiveDateTime>,
     pub profile_pic: Option<Blob>,
     pub smoker: bool,
     pub id_favorite_vehicle: Option<u64>,
@@ -28,10 +34,16 @@ pub struct NewUser {
     pub firstname: String,
     pub lastname: String,
     pub mail: String,
-    pub passwd: String,
+    passwd: String,
     pub profile_pic: Option<Blob>,
     pub smoker: bool,
     pub id_favorite_vehicle: Option<u64>,
+}
+
+impl NewUser {
+    pub fn set_passwd(&mut self, s: String) {
+        self.passwd = s;
+    }
 }
 
 #[cfg_attr(feature = "diesel", derive(AsChangeset))]

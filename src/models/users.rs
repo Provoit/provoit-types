@@ -57,3 +57,10 @@ pub struct UpdateUser {
     pub smoker: Option<bool>,
     pub id_favorite_vehicle: Option<Option<u64>>,
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct LoginUser {
+    pub mail: String,
+    pub passwd: String,
+}
+

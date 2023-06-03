@@ -38,7 +38,7 @@ diesel::table! {
         mail -> Varchar,
         passwd -> Text,
         token -> Nullable<Text>,
-        token_gentime -> Nullable<Text>,
+        token_gentime -> Nullable<Datetime>,
         profile_pic -> Nullable<Blob>,
         smoker -> Bool,
         id_favorite_vehicle -> Nullable<Unsigned<Bigint>>,

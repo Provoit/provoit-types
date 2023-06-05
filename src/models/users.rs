@@ -57,4 +57,3 @@ pub struct LoginUser {
     pub mail: String,
     pub passwd: String,
 }
-

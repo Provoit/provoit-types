@@ -4,6 +4,8 @@ CREATE TABLE `users` (
   `lastname` text NOT NULL,
   `mail` varchar(255) UNIQUE NOT NULL,
   `passwd` text NOT NULL,
+  `token` text,
+  `token_gentime` datetime,
   `profile_pic` blob,
   `smoker` bool NOT NULL,
   `id_favorite_vehicle` bigint unsigned UNIQUE

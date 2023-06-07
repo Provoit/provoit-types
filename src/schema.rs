@@ -82,6 +82,8 @@ diesel::table! {
 }
 
 diesel::joinable!(timings -> days (id_day));
+diesel::joinable!(trips -> frequencies (id_frequency));
+diesel::joinable!(trips -> vehicles (id_vehicle));
 diesel::joinable!(vehicles -> vehicle_types (id_type));
 
 diesel::allow_tables_to_appear_in_same_query!(

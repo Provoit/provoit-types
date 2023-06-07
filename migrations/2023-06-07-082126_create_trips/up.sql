@@ -10,8 +10,8 @@ CREATE TABLE `trips` (
   `id_vehicle` bigint unsigned NOT NULL,
   `id_start_timing` bigint unsigned UNIQUE NOT NULL,
   `id_end_timing` bigint unsigned UNIQUE NOT NULL,
-  FOREIGN KEY (`id_frequency`) REFERENCIES `frequencies` (`id`),
-  FOREIGN KEY (`id_vehicle`) REFERENCIES `vehicles` (`id`),
-  FOREIGN KEY (`id_start_timing`) REFERENCIES `timings` (`id`),
-  FOREIGN KEY (`id_end_timing`) REFERENCIES `timings` (`id`)
+  FOREIGN KEY (`id_frequency`) REFERENCES `frequencies` (`id`),
+  FOREIGN KEY (`id_vehicle`) REFERENCES `vehicles` (`id`),
+  FOREIGN KEY (`id_start_timing`) REFERENCES `timings` (`id`),
+  FOREIGN KEY (`id_end_timing`) REFERENCES `timings` (`id`)
 );

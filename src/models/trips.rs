@@ -6,6 +6,9 @@ use crate::schema::*;
 use serde::{Deserialize, Serialize};
 
 #[cfg_attr(feature = "diesel", derive(Queryable))]
+#[cfg_attr(feature = "diesel", diesel(belongs_to(Frequencies, foreign_key = id)))]
+#[cfg_attr(feature = "diesel", diesel(belongs_to(Vehicle, foreign_key = id)))]
+#[cfg_attr(feature = "diesel", diesel(belongs_to(Timings, foreign_key = id)))]
 #[cfg_attr(feature = "diesel", diesel(table_name = trips))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Trips{

@@ -14,4 +14,6 @@ CREATE TABLE `vehicles` (
   FOREIGN KEY (`id_type`) REFERENCES `vehicle_types` (`id`)
 );
 
-ALTER TABLE `users` ADD FOREIGN KEY (`id_favorite_vehicle`) REFERENCES `vehicles` (`id`);
+ALTER TABLE `users`
+ADD CONSTRAINT fk_user_favorite_vehicle
+FOREIGN KEY (`id_favorite_vehicle`) REFERENCES `vehicles` (`id`);

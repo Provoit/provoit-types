@@ -9,5 +9,7 @@ CREATE TABLE `vehicles` (
   `trunk_size_L` smallint unsigned NOT NULL,
   `pic` blob,
   `id_user` bigint unsigned NOT NULL,
-  `id_type` bigint unsigned NOT NULL
+  `id_type` bigint unsigned NOT NULL,
+  FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
+  FOREIGN KEY (`id_type`) REFERENCES `vehicle_types` (`id`),
 );

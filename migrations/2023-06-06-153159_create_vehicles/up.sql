@@ -11,5 +11,7 @@ CREATE TABLE `vehicles` (
   `id_user` bigint unsigned NOT NULL,
   `id_type` bigint unsigned NOT NULL,
   FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
-  FOREIGN KEY (`id_type`) REFERENCES `vehicle_types` (`id`),
+  FOREIGN KEY (`id_type`) REFERENCES `vehicle_types` (`id`)
 );
+
+ALTER TABLE `users` ADD FOREIGN KEY (`id_favorite_vehicle`) REFERENCES `vehicles` (`id`);

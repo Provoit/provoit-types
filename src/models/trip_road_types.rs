@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(feature = "diesel", diesel(belongs_to(id_trip, foreign_key = id)))]
 #[cfg_attr(feature = "diesel", diesel(table_name = trips_road_types))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TripsRoadTypes{
+pub struct TripRoadType{
     pub id_trip: u64,
     pub id_road_type: u64,
 }
@@ -19,7 +19,7 @@ pub struct TripsRoadTypes{
 #[cfg_attr(feature = "diesel", derive(Insertable))]
 #[cfg_attr(feature = "diesel", diesel(table_name = trips_road_types))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NewTripsRoadTypes{
+pub struct NewTripRoadType{
     pub id_trip: u64,
     pub id_road_type: u64,
 }

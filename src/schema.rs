@@ -35,6 +35,7 @@ diesel::table! {
         id -> Unsigned<Bigint>,
         firstname -> Text,
         lastname -> Text,
+        #[max_length = 255]
         mail -> Varchar,
         passwd -> Text,
         token -> Nullable<Text>,
@@ -52,6 +53,20 @@ diesel::table! {
     }
 }
 
+diesel::table! {
+    vehicles (id) {
+        id -> Unsigned<Bigint>,
+        name -> Text,
+        year -> Unsigned<Smallint>,
+        nb_doors -> Unsigned<Tinyint>,
+        nb_seats -> Unsigned<Tinyint>,
+        trunk_size_L -> Unsigned<Smallint>,
+        pic -> Nullable<Blob>,
+        id_user -> Unsigned<Bigint>,
+        id_type -> Unsigned<Bigint>,
+    }
+}
+
 diesel::joinable!(timings -> days (id_day));
 
 diesel::allow_tables_to_appear_in_same_query!(
@@ -61,4 +76,5 @@ diesel::allow_tables_to_appear_in_same_query!(
     timings,
     users,
     vehicle_types,
+    vehicles,
 );

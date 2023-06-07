@@ -3,6 +3,7 @@ use chrono::{NaiveDate, NaiveTime};
 use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
 
+#[cfg(feature = "diesel")]
 use super::days::Day;
 #[cfg(feature = "diesel")]
 use crate::schema::*;

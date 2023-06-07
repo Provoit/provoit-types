@@ -10,6 +10,7 @@ use serde::{Deserialize, Serialize};
 
 #[cfg_attr(feature = "diesel", derive(Queryable))]
 #[cfg_attr(feature = "diesel", diesel(table_name = users))]
+#[cfg_attr(feature = "diesel", diesel(belongs_to(Vehicles, foreign_key = id)))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct User {
     pub id: u64,

@@ -52,6 +52,13 @@ diesel::table! {
 }
 
 diesel::table! {
+    user_trips (id_user, id_trip) {
+        id_user -> Unsigned<Bigint>,
+        id_trip -> Unsigned<Bigint>,
+    }
+}
+
+diesel::table! {
     users (id) {
         id -> Unsigned<Bigint>,
         firstname -> Text,
@@ -93,6 +100,8 @@ diesel::joinable!(trip_road_types -> road_types (id_road_type));
 diesel::joinable!(trip_road_types -> trips (id_trip));
 diesel::joinable!(trips -> frequencies (id_frequency));
 diesel::joinable!(trips -> vehicles (id_vehicle));
+diesel::joinable!(user_trips -> trips (id_trip));
+diesel::joinable!(user_trips -> users (id_user));
 diesel::joinable!(vehicles -> vehicle_types (id_type));
 
 diesel::allow_tables_to_appear_in_same_query!(
@@ -102,6 +111,7 @@ diesel::allow_tables_to_appear_in_same_query!(
     timings,
     trip_road_types,
     trips,
+    user_trips,
     users,
     vehicle_types,
     vehicles,

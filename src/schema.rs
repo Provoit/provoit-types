@@ -63,7 +63,6 @@ diesel::table! {
         id -> Unsigned<Bigint>,
         firstname -> Text,
         lastname -> Text,
-        #[max_length = 255]
         mail -> Varchar,
         passwd -> Text,
         token -> Nullable<Text>,

@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(feature = "diesel", diesel(belongs_to(Timings, foreign_key = id)))]
 #[cfg_attr(feature = "diesel", diesel(table_name = trips))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Trips {
+pub struct Trip {
     pub id: u64,
     pub start: String,
     pub end: String,
@@ -26,7 +26,7 @@ pub struct Trips {
 #[cfg_attr(feature = "diesel", derive(Insertable))]
 #[cfg_attr(feature = "diesel", diesel(table_name = trips))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NewTrips {
+pub struct NewTrip {
     pub start: String,
     pub end: String,
     pub max_people: u8,
@@ -40,7 +40,7 @@ pub struct NewTrips {
 #[cfg_attr(feature = "diesel", derive(AsChangeset))]
 #[cfg_attr(feature = "diesel", diesel(table_name = trips))]
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UpdateTrips {
+pub struct UpdateTrip {
     pub start: Option<String>,
     pub end: Option<String>,
     pub max_people: Option<u8>,

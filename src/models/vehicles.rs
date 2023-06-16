@@ -33,7 +33,7 @@ pub struct NewVehicle {
     pub nb_seats: u8,
     pub trunk_size_L: u16,
     pub pic: Option<Vec<u8>>,
-    pub id_user: u64,
+    pub id_user: Option<u64>,
     pub id_type: u64,
 }
 

@@ -66,7 +66,11 @@ impl From<HashMap<String, String>> for NewVehicle {
                 .expect("Taille du coffre incorrecte"),
             pic: None,
             id_user: None,
-            id_type: 1,
+            id_type: value
+                .get("vehicle_type")
+                .expect("Le type de véhicule est requis")
+                .parse()
+                .expect("Type de véhicule invalide"),
         }
     }
 }

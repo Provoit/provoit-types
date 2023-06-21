@@ -1,4 +1,6 @@
 #![allow(non_snake_case)]
+use std::collections::HashMap;
+
 #[cfg(feature = "diesel")]
 use diesel::prelude::*;
 
@@ -35,6 +37,38 @@ pub struct NewVehicle {
     pub pic: Option<Vec<u8>>,
     pub id_user: Option<u64>,
     pub id_type: u64,
+}
+
+/// Convert to a NewVehicle from an event's HashMap
+impl From<HashMap<String, String>> for NewVehicle {
+    fn from(value: HashMap<String, String>) -> Self {
+        Self {
+            name: value.get("name").expect("Le nom est requis").to_owned(),
+            year: value
+                .get("year")
+                .expect("Année requise")
+                .parse()
+                .expect("Année invalide"),
+            nb_doors: value
+                .get("nb_doors")
+                .expect("Le nombre de porte est requis")
+                .parse()
+                .expect("Nombre de portes invalide"),
+            nb_seats: value
+                .get("nb_seats")
+                .expect("Le nombre de sièges est requis")
+                .parse()
+                .expect("Nombre de sièges invalide"),
+            trunk_size_L: value
+                .get("trunk_size_L")
+                .expect("La taille du coffre est requise")
+                .parse()
+                .expect("Taille du coffre incorrecte"),
+            pic: None,
+            id_user: None,
+            id_type: 1,
+        }
+    }
 }
 
 #[cfg_attr(feature = "diesel", derive(AsChangeset))]

@@ -7,8 +7,8 @@ use super::{timings::NewTiming, trips::NewTrip};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreateTrip {
-    trip: NewTrip,
-    start_timing: NewTiming,
-    end_timing: NewTiming,
-    road_types: Vec<u64>,
+    pub trip: NewTrip,
+    pub start_timing: NewTiming,
+    pub end_timing: NewTiming,
+    pub road_types: Vec<u64>,
 }

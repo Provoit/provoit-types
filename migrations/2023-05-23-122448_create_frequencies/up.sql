@@ -5,6 +5,6 @@ CREATE TABLE `frequencies` (
 
 INSERT INTO `frequencies`(`id`, `label`)
 VALUES
-(1, "Journalière"),
+(1, "Journalier"),
 (2, "Hebdomadaire"),
-(3, "Mensuelle");
+(3, "Mensuel");

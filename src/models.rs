@@ -9,3 +9,4 @@ pub mod user_trips;
 pub mod users;
 pub mod vehicle_types;
 pub mod vehicles;
+pub mod creation;

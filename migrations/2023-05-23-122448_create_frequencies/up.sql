@@ -3,3 +3,8 @@ CREATE TABLE `frequencies` (
   `label` text NOT NULL
 );
 
+INSERT INTO `frequencies`(`id`, `label`)
+VALUES
+(1, "Journalière"),
+(2, "Hebdomadaire"),
+(3, "Mensuelle");

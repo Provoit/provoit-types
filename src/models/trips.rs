@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 #[cfg(feature = "diesel")]
 use diesel::prelude::*;
 
@@ -17,7 +19,8 @@ pub struct Trip {
     pub end: String,
     pub max_people: u8,
     pub price: f32,
-    pub id_frequency: u64,
+    pub recurring: bool,
+    pub id_frequency: Option<u64>,
     pub id_vehicle: u64,
     pub id_start_timing: u64,
     pub id_end_timing: u64,
@@ -31,10 +34,51 @@ pub struct NewTrip {
     pub end: String,
     pub max_people: u8,
     pub price: f32,
-    pub id_frequency: u64,
+    pub recurring: bool,
+    pub id_frequency: Option<u64>,
     pub id_vehicle: u64,
     pub id_start_timing: u64,
     pub id_end_timing: u64,
+}
+
+/// Convert to a NewTrip from an event's HashMap
+impl From<HashMap<String, String>> for NewTrip {
+    fn from(value: HashMap<String, String>) -> Self {
+        Self {
+            start: value
+                .get("start")
+                .expect("Le lieu de départ est requis")
+                .to_owned(),
+            end: value
+                .get("end")
+                .expect("Le lieu d'arriver est obligatoire")
+                .to_owned(),
+            max_people: value
+                .get("max_people")
+                .expect("Le nombre de personnes est obligatoire")
+                .parse()
+                .expect("Nombre de personnes invalide"),
+            price: value
+                .get("price")
+                .expect("Le prix est requis")
+                .parse()
+                .expect("Prix invalide"),
+            recurring: value
+                .get("recurring")
+                .unwrap_or(&"false".to_string())
+                .eq("true"),
+            id_frequency: value
+                .get("id_frequency")
+                .map(|v| v.parse().expect("Fréquence invalide")),
+            id_vehicle: value
+                .get("id_vehicle")
+                .expect("Le véhicule est requis")
+                .parse()
+                .expect("Véhicule invalide"),
+            id_start_timing: 0,
+            id_end_timing: 0,
+        }
+    }
 }
 
 #[cfg_attr(feature = "diesel", derive(AsChangeset))]
@@ -45,7 +89,8 @@ pub struct UpdateTrip {
     pub end: Option<String>,
     pub max_people: Option<u8>,
     pub price: Option<f32>,
-    pub id_frequency: Option<u64>,
+    pub recurring: Option<bool>,
+    pub id_frequency: Option<Option<u64>>,
     pub id_vehicle: Option<u64>,
     pub id_start_timing: Option<u64>,
     pub id_end_timing: Option<u64>,

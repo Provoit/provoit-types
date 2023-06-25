@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(feature = "diesel", diesel(belongs_to(Vehicle, foreign_key = id)))]
 #[cfg_attr(feature = "diesel", diesel(belongs_to(Timings, foreign_key = id)))]
 #[cfg_attr(feature = "diesel", diesel(table_name = trips))]
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Trip {
     pub id: u64,
     pub start: String,
